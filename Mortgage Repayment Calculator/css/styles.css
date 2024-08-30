@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../assets/fonts/static/PlusJakartaSans-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../assets/fonts/static/PlusJakartaSans-Bold.ttf');
+    font-weight: 700;
+}
+
+:root {
+    --blue: #133040;
+    --red: #d73328;
+    --lime: #d7da2f;
+    --slate-700: #4e6e7e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Sans";
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-side {
+    padding: 1.25rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.input-box {
+    height: 3rem;
+    border-radius: .5rem;
+    border: solid 1px var(--slate-700);
+    overflow: hidden;
+}
+
+.input-box input {
+    height: 100%;
+    border: none;
+}
+
+.type-field {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.radio-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1rem;
+    font-weight: 700;
+}
+
+.amount-field div::before {
+    content: "£";
+    font-size: 1.15rem;
+    color: aliceblue;
+    width: 2.75rem;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e6e7e;
+}
