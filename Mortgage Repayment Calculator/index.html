@@ -18,28 +18,33 @@
   
   <main>
     <div class="calculator">
+
       <section class="form-side">
+
         <div class="title">
           <h1>Mortgage Calculator</h1>
           <button>Clear All</button>
         </div>
+        
         <form>
           <div class="amount-field">
             <label for="amount">Mortgage Amount</label>
-            <div class="input-box">
+            <div class="input-box field">
               <input type="number" id="amount" name="amount">
             </div>
           </div>
-          <div class="term-field">
-            <label for="term">Mortgage Term</label>
-            <div class="input-box">
-              <input type="number" id="term" name="amount">  
+          <div class="term-interest-container">
+            <div class="term-field">
+              <label for="term">Mortgage Term</label>
+              <div class="input-box field">
+                <input type="number" id="term" name="amount">  
+              </div>
             </div>
-          </div>
-          <div class="interest-field">
-            <label for="interest">Interest Rate</label>
-            <div class="input-box">
-              <input type="number" id="interest" name="amount">  
+            <div class="interest-field">
+              <label for="interest">Interest Rate</label>
+              <div class="input-box field">
+                <input type="number" id="interest" name="amount">  
+              </div>
             </div>
           </div>
           <div class="type-field">
@@ -59,6 +64,7 @@
           </button>
         </form>
       </section>
+
       <section class="result-side">
         <img src="./assets/images/illustration-empty.svg" alt="empty">
         <div>
@@ -66,6 +72,7 @@
           <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
         </div>
       </section>
+
     </div>
   </main>
   
