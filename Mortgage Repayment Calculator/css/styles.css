@@ -1,37 +1,5 @@
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf');
-    font-weight: 200;
-}
-
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf');
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('../assets/fonts/static/PlusJakartaSans-Medium.ttf');
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('../assets/fonts/static/PlusJakartaSans-Bold.ttf');
-    font-weight: 700;
-}
-
-:root {
-    --red: #d73328;
-    --lime: #d7da2f;
-    --white: #fff;
-    --slate-100: hsl(202, 86%, 94%);
-    --slate-300: hsl(203, 41%, 72%); 
-    --slate-500: hsl(200, 26%, 54%);
-    --slate-700: hsl(200, 24%, 40%);
-    --slate-900: hsl(202, 55%, 16%);
-}
+@import url(fonts.css);
+@import url(variables.css);
 
 * {
     margin: 0;
@@ -40,13 +8,71 @@
     font-family: "Plus Jakarta Sans";
 }
 
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+    background-color: var(--slate-100);
+
+    @media screen and (min-width:768px) {
+        position: fixed; 
+        bottom: 0; 
+        width: 100%;
+    }
+
+}
+
+.attribution a { 
+    color: var(--slate-700); 
+}
+
+
+main {
+    height: 100%;
+    width: 100%;
+
+    @media screen and (min-width:420px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--slate-100);
+        padding: 2rem 0;
+    }
+
+    @media screen and (min-width:768px) {
+        height: 100vh;
+    }
+
+}
+
 .calculator {
     display: flex;
     flex-direction: column;
+    background-color: var(--white);
+
+    @media screen and (min-width:420px) {
+        border-radius: 25px;
+        width: 90%;
+        max-width: 30rem;
+    }
+
+    @media screen and (min-width:768px) {
+        max-width: 60rem;
+        flex-direction: row;
+    }
+
 }
 
 .form-side {
     padding: 1.25rem 1.5rem 1.85rem;
+
+    @media screen and (min-width:768px) {
+        width: 50%;
+    }
+
+    @media screen and (min-width:920px) {
+        padding: 1.5rem 2.25rem 2.25rem;
+    }
+
 }
 
 .title {
@@ -67,10 +93,18 @@
         background-color: transparent;
         color: var(--slate-700);
         border-bottom: solid 1px var(--slate-700);
+        margin-top: 3px;
 
         &:hover {
             cursor: pointer;
         }
+    }
+
+    @media screen and (min-width:768px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1rem;
     }
 }
 
@@ -113,6 +147,9 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
     width: 80%;
     padding-left: .75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--slate-900);
 }
 
 .amount-field .field {
@@ -181,6 +218,12 @@ form button {
     font-weight: 700;
     color: var(--slate-900);
     font-size: 1rem;
+
+    @media screen and (min-width:768px) {
+        width: 18rem;
+        height: 3.25rem;
+        margin-top: .5rem;
+    }
 }
 
 /* result-side */
@@ -190,15 +233,23 @@ form button {
     color: var(--white);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 2rem 0 2.25rem;
     gap: 1rem;
 
-    & img {
-        max-width: 15rem;
+    > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            max-width: 15rem;
+        }
     }
 
-    & div {
+    .information-text {
+        font-size: .95rem;
         max-width: 19rem;
         text-align: center;
 
@@ -207,5 +258,25 @@ form button {
             margin-top: 1rem;
         }
     }
+
+    @media screen and (min-width:420px) {
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+    @media screen and (min-width:768px) {
+        width: 50%;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 5rem;
+
+        .information-text {
+            max-width: 25rem;
+        }
+    }
 }
 
+.term-interest-container {
+    @media screen and (min-width:768px) {
+        flex-direction: row;
+    }
+}

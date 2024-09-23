@@ -8,15 +8,11 @@
   <link rel="stylesheet" href="./css/styles.css">
   <title>Frontend Mentor | Mortgage repayment calculator</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
   
   <main>
+
     <div class="calculator">
 
       <section class="form-side">
@@ -34,18 +30,21 @@
             </div>
           </div>
           <div class="term-interest-container">
+
             <div class="term-field">
               <label for="term">Mortgage Term</label>
               <div class="input-box field">
                 <input type="number" id="term" name="amount">  
               </div>
             </div>
+
             <div class="interest-field">
               <label for="interest">Interest Rate</label>
               <div class="input-box field">
                 <input type="number" id="interest" name="amount">  
               </div>
             </div>
+
           </div>
           <div class="type-field">
             <p>Mortgage Type</p>
@@ -63,22 +62,27 @@
             Calculate Repayments
           </button>
         </form>
+
       </section>
 
       <section class="result-side">
-        <img src="./assets/images/illustration-empty.svg" alt="empty">
         <div>
-          <h2>Result shown here</h2>
-          <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+          <img src="./assets/images/illustration-empty.svg" alt="empty">
+          <div class="information-text">
+            <h2>Result shown here</h2>
+            <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+          </div>
         </div>
       </section>
-
+      
     </div>
+
   </main>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
     Coded by <a href="#">daleale</a>.
   </div>
+
 </body>
 </html>
