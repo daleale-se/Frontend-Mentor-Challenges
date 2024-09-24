@@ -1,5 +1,5 @@
 .title {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -98,10 +98,7 @@ input[type="number"] {
     display: flex;
 }
 
-.amount-field div::before, 
-.term-field div::after, 
-.interest-field div::after
- {
+.label-block {
     font-size: 1.15rem;
     color: var(--slate-700);
     padding: 0 1rem;
@@ -111,18 +108,6 @@ input[type="number"] {
     align-items: center;
     background-color: var(--slate-100);
     font-weight: 700;
-}
-
-.amount-field div::before {
-    content: "£";
-}
-
-.term-field div::after {
-    content: "years";
-}
-
-.interest-field div::after {
-    content: "%";
 }
 
 .radio-box {
@@ -173,4 +158,18 @@ form button {
     @media screen and (min-width:768px) {
         flex-direction: row;
     }
+}
+
+.required-field {
+    border-color: var(--red);
+}
+
+.required-label-block {
+    color: var(--white);
+    background-color: var(--red);
+}
+
+.required {
+    font-size: .9rem;
+    color: var(--red);
 }

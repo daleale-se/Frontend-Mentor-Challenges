@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="./css/main.css">
   <title>Frontend Mentor | Mortgage repayment calculator</title>
-
+  <script src="js/app.js" type="module" defer></script>
 </head>
 <body>
   
@@ -23,26 +23,34 @@
         </div>
         
         <form>
+
           <div class="amount-field">
             <label for="amount">Mortgage Amount</label>
             <div class="input-box field">
-              <input type="number" id="amount" name="amount">
+              <div class="label-block">£</div>
+              <input type="number" id="amount" name="amount" min="100">
             </div>
+            <p class="required hidden">This field is required</p>
           </div>
+
           <div class="term-interest-container">
 
             <div class="term-field">
               <label for="term">Mortgage Term</label>
               <div class="input-box field">
-                <input type="number" id="term" name="amount">  
+                <input type="number" id="term" name="term" min="1">
+                <div class="label-block">years</div>
               </div>
+              <p class="required hidden">This field is required</p>
             </div>
 
             <div class="interest-field">
               <label for="interest">Interest Rate</label>
               <div class="input-box field">
-                <input type="number" id="interest" name="amount">  
+                <input type="number" id="interest" name="interest" min="1"> 
+                <div class="label-block">%</div> 
               </div>
+              <p class="required hidden">This field is required</p>
             </div>
 
           </div>
@@ -50,14 +58,16 @@
           <div class="type-field">
 
             <p>Mortgage Type</p>
+
             <div class="input-box radio-box">
-              <input type="radio" name="mortgage-type" id="repayment">
+              <input type="radio" name="mortgage-type" value="repayment" id="repayment">
               <label for="repayment">Repayment</label>
             </div>
             <div class="input-box radio-box">
-              <input type="radio" name="mortgage-type" id="interest-only">
+              <input type="radio" name="mortgage-type" value="interest-only" id="interest-only">
               <label for="interest-only">Interest Only</label>
             </div>
+            <p class="required hidden">This field is required</p>
 
           </div>
 
