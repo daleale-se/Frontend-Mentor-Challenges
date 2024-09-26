@@ -1,3 +1,5 @@
+import calculateRepayments from "./mortgageCalculation.js"
+
 const validForm = () => {
     const inputElements = document.querySelectorAll("input[type='number']")
     for (const input of inputElements) {
@@ -35,12 +37,8 @@ const requiredValues = () => {
 const handleSubmit = e => {
     e.preventDefault()
     if (validForm()) {
-        console.log("valid");
-
-        // do calculation
-
+        calculateRepayments(e.target)
     } else {
-        console.log("invalid");
         requiredValues()
     }
 }
@@ -64,7 +62,7 @@ const verifyValue = (input) => {
     value === "" ? addRequiredField(input.name) : removeRequiredField(input.name)
 }
 
-const init = () => {
+const validateFormEvents = () => {
     const form = document.querySelector("form")
     form.addEventListener("submit", handleSubmit)
 
@@ -75,4 +73,4 @@ const init = () => {
     inputElements.forEach(input => input.addEventListener("blur", () => verifyValue(input)))
 }
 
-export default init
+export default validateFormEvents

@@ -19,7 +19,7 @@
 
         <div class="title">
           <h1>Mortgage Calculator</h1>
-          <button>Clear All</button>
+          <button id="clear-all">Clear All</button>
         </div>
         
         <form>
@@ -47,7 +47,7 @@
             <div class="interest-field">
               <label for="interest">Interest Rate</label>
               <div class="input-box field">
-                <input type="number" id="interest" name="interest" min="1"> 
+                <input type="number" step="0.01" id="interest" name="interest" min="1"> 
                 <div class="label-block">%</div> 
               </div>
               <p class="required hidden">This field is required</p>
