@@ -4,18 +4,19 @@ import styled from 'styled-components'
 const SearchDiv = styled.div`
     display: flex;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
 `
 
 const SearchInput = styled.input`
     height: 100%;
     border: none;
 
-    font-size: 12px;
-    width: 16rem;
+    font-family: "Rubik";
+    font-size: 14px;
+    width: 50%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    padding-left: .75rem;
+    padding-left: 1.25rem;
 `
 
 const SearchButton = styled.button`
@@ -25,7 +26,7 @@ const SearchButton = styled.button`
 
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    width: 3rem;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
