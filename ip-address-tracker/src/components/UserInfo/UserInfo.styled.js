@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components"
 
-const UbicationDataDiv = styled.div`
+const UserInfoDiv = styled.div`
     width: 86%;
     max-width: 66rem;
     padding: 1.5rem 0;
@@ -44,12 +44,11 @@ const DataDiv = styled.div`
         &::before {
         content: "";
         position: absolute;
-        left: -25px; /* Adjust based on spacing */
+        left: -25px; 
         width: 1px;
         height: 50px;
         background-color: #c9c9c9;
 
-        /* Only show the line for the elements that are not the first one */
         ${ props => props.$hideDivider && css`
             display: none;
         `}
@@ -78,30 +77,6 @@ const DataValue = styled.p`
     @media screen and (min-width: 768px){
         text-align: left;
     }
-
 `
 
-const UbicationData = () => {
-  return (
-    <UbicationDataDiv>
-        <DataDiv $hideDivider>
-            <DataName>ip address</DataName>
-            <DataValue>192.212.174.101</DataValue>
-        </DataDiv>
-        <DataDiv>
-            <DataName>location</DataName>
-            <DataValue>Brooklyn, NY 10001</DataValue>
-        </DataDiv>
-        <DataDiv>
-            <DataName>timezone</DataName>
-            <DataValue>UTC-05:00</DataValue>
-        </DataDiv>
-        <DataDiv>
-            <DataName>isp</DataName>
-            <DataValue>SpaceX Starlink</DataValue>
-        </DataDiv>
-    </UbicationDataDiv>
-  )
-}
-
-export default UbicationData
+export { UserInfoDiv, DataDiv, DataName, DataValue }

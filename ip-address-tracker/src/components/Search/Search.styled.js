@@ -1,12 +1,22 @@
-import arrowIcon from "../assets/images/icon-arrow.svg"
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
+
+const shakingAnimation = keyframes`
+  0% { transform: translateX(0px); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0px); }
+`
 
 const SearchDiv = styled.div`
     display: flex;
     align-items: center;
     height: 3.25rem;
-    max-width: 30rem; /* Constrain the parent div's width */
-    width: 86%; /* Allow it to fill the container's width */
+    max-width: 30rem; 
+    width: 86%;
+    ${props => props.$shaking && css`
+        animation: ${shakingAnimation} .3s 1;
+    `}
 `
 
 const SearchInput = styled.input`
@@ -15,10 +25,11 @@ const SearchInput = styled.input`
     width: 100%; /* This will ensure the input grows to fill the available space */
 
     font-family: "Rubik";
-    font-size: 14px;
+    font-size: 13px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     padding-left: 1.25rem;
+    padding-right: .25rem;
     flex-grow: 1;
 `
 
@@ -34,17 +45,13 @@ const SearchButton = styled.button`
     align-items: center;
     justify-content: center;
 
+    &:hover {
+        cursor: pointer;
+    }
 `
 
-const Search = () => {
-
-  return (
-    <SearchDiv>
-        <SearchInput type="search" name="search" placeholder="Search for any IP address or domain"/>
-        <SearchButton><img src={arrowIcon} alt="Logo" /></SearchButton>
-    </SearchDiv>
-  )
-
+export {
+    SearchDiv,
+    SearchInput,
+    SearchButton
 }
-
-export default Search

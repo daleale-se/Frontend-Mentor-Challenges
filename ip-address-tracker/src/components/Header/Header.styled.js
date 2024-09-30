@@ -1,8 +1,6 @@
 import styled from "styled-components"
-import Search from "./Search"
-import UbicationData from "./UbicationData"
-import mobileBg from "../assets/images/pattern-bg-mobile.png"
-import desktopBg from "../assets/images/pattern-bg-desktop.png"
+import mobileBg from "../../assets/images/pattern-bg-mobile.png"
+import desktopBg from "../../assets/images/pattern-bg-desktop.png"
 
 const HeaderContainer = styled.header`
     background: url(${mobileBg});
@@ -30,14 +28,4 @@ const AppTitle = styled.h1`
     font-weight: 500;
 `
 
-const Header = () => {
-  return (
-    <HeaderContainer>
-        <AppTitle>IP Address Tracker</AppTitle>
-        <Search />
-        <UbicationData />
-    </HeaderContainer>
-  )
-}
-
-export default Header
+export { HeaderContainer, AppTitle }
