@@ -9,6 +9,7 @@ const HeaderContainer = styled.header`
     background-size: cover;
     background-repeat: no-repeat;
     height: 18rem;
+    width: 100%;
     padding-top: 1.5rem;
 
     display: flex;

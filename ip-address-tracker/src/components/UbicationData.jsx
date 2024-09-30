@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, {css} from "styled-components"
 
 const UbicationDataDiv = styled.div`
     width: 86%;
@@ -13,6 +13,7 @@ const UbicationDataDiv = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
     gap: 1.5rem;
+    z-index: 2;
 
     @media screen and (min-width: 568px){
         grid-template-columns: 1fr 1fr;
@@ -40,7 +41,6 @@ const DataDiv = styled.div`
         align-items: start;
         padding-right: 2rem;
 
-
         &::before {
         content: "";
         position: absolute;
@@ -50,7 +50,9 @@ const DataDiv = styled.div`
         background-color: #c9c9c9;
 
         /* Only show the line for the elements that are not the first one */
-        display: ${(props) => (props.showDivider ? "block" : "none")};
+        ${ props => props.$hideDivider && css`
+            display: none;
+        `}
         }
     }
 `
@@ -82,19 +84,19 @@ const DataValue = styled.p`
 const UbicationData = () => {
   return (
     <UbicationDataDiv>
-        <DataDiv>
+        <DataDiv $hideDivider>
             <DataName>ip address</DataName>
             <DataValue>192.212.174.101</DataValue>
         </DataDiv>
-        <DataDiv showDivider>
+        <DataDiv>
             <DataName>location</DataName>
             <DataValue>Brooklyn, NY 10001</DataValue>
         </DataDiv>
-        <DataDiv showDivider>
+        <DataDiv>
             <DataName>timezone</DataName>
             <DataValue>UTC-05:00</DataValue>
         </DataDiv>
-        <DataDiv showDivider>
+        <DataDiv>
             <DataName>isp</DataName>
             <DataValue>SpaceX Starlink</DataValue>
         </DataDiv>
