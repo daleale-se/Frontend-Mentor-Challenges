@@ -2,6 +2,8 @@ import styled from "styled-components"
 import Header from "./components/Header/Header"
 import Map from "./components/Map/Map"
 import "./css/styles.css"
+import { LocationProvider } from "./context/LocationContext"
+import { UserInfoProvider } from "./context/UserInfoContext"
 
 const AppContainer = styled.div`
   background-color: #cfcfcf;
@@ -15,10 +17,14 @@ const AppContainer = styled.div`
 function App() {
 
   return (
-    <AppContainer>
-      <Header />
-      <Map />
-    </AppContainer>
+    <UserInfoProvider>
+      <LocationProvider>
+        <AppContainer>
+          <Header />
+          <Map />
+        </AppContainer>
+      </LocationProvider>
+    </UserInfoProvider>
   )
 }
 
