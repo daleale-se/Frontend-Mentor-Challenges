@@ -1,12 +1,16 @@
 import { useState } from "react"
 import arrowIcon from "../../assets/images/icon-arrow.svg"
 import { SearchDiv, SearchInput, SearchButton } from "./Search.styled"
-import { identifyType } from "./searchValidation"
+import { getData, identifyType } from "./searchLogic"
+import { useLocation } from "../../context/LocationContext"
+import { useUserInfo } from "../../context/UserInfoContext"
 
 const Search = () => {
+
+  const { setCoordinates } = useLocation()
+  const { setIpData } = useUserInfo()
   
   const [ search, setSearch ] = useState("")
-  // const [ type, setType ] = useState(null)
   const [ shaking, setShaking ] = useState(false)
 
   const shakeEffect = () => {
@@ -16,23 +20,21 @@ const Search = () => {
       }, 500)
   }
 
-  // useEffect(() => {
-  //   if (shakeRef.current && type === "Invalid") {
-  //     setShaking(true)
-  //     setTimeout(() => {
-  //       setShaking(false)
-  //       shakeRef.current = false
-  //     }, 500)
-  //   }
-  // }, [type])
-
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault()
     const inputType = identifyType(search)
     if (inputType === "Invalid") {
       shakeEffect(inputType)
     } else {
-      // fetch
+      const { ip, location, isp } = await getData(inputType, search)
+      const newCoordinates = [location.lat, location.lng]
+      const newIpData = {
+        ip,
+        location: `${location.country}, ${location.region}, ${location.city}`,
+        isp: isp || "Unknow Provider"
+      }
+      setCoordinates(newCoordinates);
+      setIpData(newIpData);
     }
   }
 

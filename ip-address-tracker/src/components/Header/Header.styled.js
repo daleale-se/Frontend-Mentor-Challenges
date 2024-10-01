@@ -17,7 +17,7 @@ const HeaderContainer = styled.header`
 
     @media screen and (min-width: 768px) {
       background: url(${desktopBg});
-      height: 15rem;
+      height: 13.5rem;
     }
 `
 

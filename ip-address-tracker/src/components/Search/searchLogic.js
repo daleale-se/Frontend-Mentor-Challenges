@@ -1,3 +1,5 @@
+import { GEO_IPIFY_APY } from "../../constants"
+
 const isIpv4 = (str) => {
     const regex = /\b(?:\d{1,3}\.){3}\d{1,3}\b/
     return regex.test(str)
@@ -20,8 +22,21 @@ export const identifyType = (inputValue) => {
     return 'Invalid';
 };
 
-export const box = () => {
-
-    return {
+export const getData = async (inputType, searchValue) => {
+    try {
+        let response;
+        if (inputType === "IPv4" || inputType === "IPv6") {
+        response = await fetch(`${GEO_IPIFY_APY}&ipAddress=${searchValue}`);
+        } else {
+        response = await fetch(`${GEO_IPIFY_APY}&domain=${searchValue}`);
+        }
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Failed to fetch data:", error);
+        return { error: error.message }; 
     }
-}
+};
+      
