@@ -7,12 +7,7 @@ const Header = () => {
     <HeaderContainer>
         <AppTitle>IP Address Tracker</AppTitle>
         <Search />
-        <UbicationData
-          ipAddress="192.212.174.101"
-          location="Brooklyn, NY 10001"
-          timezone="UTC-05:00"
-          isp="SpaceX Starlink"
-        />
+        <UbicationData />
     </HeaderContainer>
   )
 }

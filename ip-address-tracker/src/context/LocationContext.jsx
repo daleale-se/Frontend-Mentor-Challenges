@@ -5,7 +5,7 @@ const LocationContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const LocationProvider = ({ children }) => {
 
-  const [coordinates, setCoordinates] = useState(null);
+  const [coordinates, setCoordinates] = useState([-34.52536460681346, -58.53701212465322]);
 
   return (
     <LocationContext.Provider value={{ coordinates, setCoordinates }}>

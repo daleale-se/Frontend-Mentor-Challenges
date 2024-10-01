@@ -11,7 +11,7 @@ const isIpv6 = (str) => {
 }
 
 const isDomain = str => {
-    const regex = /\b(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})\b/
+    const regex = /^(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
     return regex.test(str)
 }
 
@@ -40,3 +40,15 @@ export const getData = async (inputType, searchValue) => {
     }
 };
       
+export const firstRequest = async () => {
+    try {
+        const response  = await fetch(GEO_IPIFY_APY);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Failed to fetch data:", error);
+        return { error: error.message }; 
+    }
+}

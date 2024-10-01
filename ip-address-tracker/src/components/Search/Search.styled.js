@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components'
+import { mainFontFamily } from "../../variables.styled.js"
 
 const shakingAnimation = keyframes`
   0% { transform: translateX(0px); }
@@ -22,15 +23,19 @@ const SearchDiv = styled.div`
 const SearchInput = styled.input`
     height: 100%;
     border: none;
-    width: 100%; /* This will ensure the input grows to fill the available space */
+    width: 100%; 
 
-    font-family: "Rubik";
+    font-family: ${mainFontFamily};
     font-size: 13px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     padding-left: 1.25rem;
     padding-right: .25rem;
     flex-grow: 1;
+
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 const SearchButton = styled.button`

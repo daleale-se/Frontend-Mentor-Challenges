@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import arrowIcon from "../../assets/images/icon-arrow.svg"
 import { SearchDiv, SearchInput, SearchButton } from "./Search.styled"
-import { getData, identifyType } from "./searchLogic"
+import { firstRequest, getData, identifyType } from "./searchLogic"
 import { useLocation } from "../../context/LocationContext"
 import { useUserInfo } from "../../context/UserInfoContext"
 
@@ -13,12 +13,24 @@ const Search = () => {
   const [ search, setSearch ] = useState("")
   const [ shaking, setShaking ] = useState(false)
 
+  const updateLocationAndUserInfo = (ip, location, isp) => {
+    const newCoordinates = [location.lat, location.lng]
+    const newIpData = {
+      ip,
+      location: `${location.region}, ${location.city}`,
+      timezone: `UTC${location.timezone}`,
+      isp: isp || "Unknow Provider"
+    }
+    setCoordinates(newCoordinates);
+    setIpData(newIpData);
+  }
+
   const shakeEffect = () => {
       setShaking(true)
       setTimeout(() => {
         setShaking(false)
       }, 500)
-  }
+    }
 
   const handleSearch = async (e) => {
     e.preventDefault()
@@ -27,16 +39,17 @@ const Search = () => {
       shakeEffect(inputType)
     } else {
       const { ip, location, isp } = await getData(inputType, search)
-      const newCoordinates = [location.lat, location.lng]
-      const newIpData = {
-        ip,
-        location: `${location.country}, ${location.region}, ${location.city}`,
-        isp: isp || "Unknow Provider"
-      }
-      setCoordinates(newCoordinates);
-      setIpData(newIpData);
+      updateLocationAndUserInfo(ip, location, isp)
     }
   }
+
+  useEffect(() => {
+    (async function () {
+      const { ip, location, isp } = await firstRequest()
+      updateLocationAndUserInfo(ip, location, isp)
+    })()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <SearchDiv $shaking={shaking}>

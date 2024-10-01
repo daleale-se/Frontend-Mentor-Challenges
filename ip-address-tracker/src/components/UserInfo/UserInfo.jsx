@@ -1,12 +1,17 @@
+import { useUserInfo } from "../../context/UserInfoContext"
 import { UserInfoDiv, DataDiv, DataName, DataValue } from "./UserInfo.styled"
 
-// eslint-disable-next-line react/prop-types
-const UserInfo = ({ipAddress, location, timezone, isp}) => {
+const UserInfo = () => {
+
+    const {ipData} = useUserInfo()
+
+    const {ip, location, timezone, isp} = ipData
+
   return (
     <UserInfoDiv>
         <DataDiv $hideDivider>
             <DataName>ip address</DataName>
-            <DataValue>{ipAddress}</DataValue>
+            <DataValue>{ip}</DataValue>
         </DataDiv>
         <DataDiv>
             <DataName>location</DataName>

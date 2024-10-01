@@ -19,7 +19,8 @@ const UserInfoDiv = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(2, 1fr);
         gap: 3rem;
-        padding: 2.5rem;
+        padding: 1.5rem;
+        align-items: center;
     }
 
     @media screen and (min-width: 768px){
@@ -27,6 +28,7 @@ const UserInfoDiv = styled.div`
         grid-template-rows: 1fr;
         gap: 2rem;
         padding: 2.5rem;
+        align-items: start;
     }
 `
 
@@ -35,7 +37,7 @@ const DataDiv = styled.div`
     flex-direction: column;
     align-items: center;
     gap: .5rem;
-    position: relative; /* Set this to relative to position ::before relative to this div */
+    position: relative;
 
     @media screen and (min-width: 768px) {
         align-items: start;
