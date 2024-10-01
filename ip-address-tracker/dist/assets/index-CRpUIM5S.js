@@ -157,7 +157,7 @@ Error generating stack: `+l.message+`
     @media screen and (min-width: 768px){
         text-align: left;
     }
-`,s1=()=>{const{ipData:t}=Fm(),{ip:e,location:i,timezone:o,isp:a}=t;return nt.jsxs(o1,{children:[nt.jsxs(Ho,{$hideDivider:!0,children:[nt.jsx(Uo,{children:"ip address"}),nt.jsx(Wo,{children:e})]}),nt.jsxs(Ho,{children:[nt.jsx(Uo,{children:"location"}),nt.jsx(Wo,{children:i})]}),nt.jsxs(Ho,{children:[nt.jsx(Uo,{children:"timezone"}),nt.jsx(Wo,{children:o})]}),nt.jsxs(Ho,{children:[nt.jsx(Uo,{children:"isp"}),nt.jsx(Wo,{children:a})]})]})},a1="/assets/pattern-bg-mobile-BXCQn_w1.png",l1="/assets/pattern-bg-desktop-tWEft0Vv.png",u1=ke.header`
+`,s1=()=>{const{ipData:t}=Fm(),{ip:e,location:i,timezone:o,isp:a}=t;return nt.jsxs(o1,{children:[nt.jsxs(Ho,{$hideDivider:!0,children:[nt.jsx(Uo,{children:"ip address"}),nt.jsx(Wo,{children:e})]}),nt.jsxs(Ho,{children:[nt.jsx(Uo,{children:"location"}),nt.jsx(Wo,{children:i})]}),nt.jsxs(Ho,{children:[nt.jsx(Uo,{children:"timezone"}),nt.jsx(Wo,{children:o})]}),nt.jsxs(Ho,{children:[nt.jsx(Uo,{children:"isp"}),nt.jsx(Wo,{children:a})]})]})},a1="/Frontend-Mentor-Challenges/ip-address-tracker/dist/assets/pattern-bg-mobile-BXCQn_w1.png",l1="/Frontend-Mentor-Challenges/ip-address-tracker/dist/assets/pattern-bg-desktop-tWEft0Vv.png",u1=ke.header`
     background: url(${a1});
     background-size: cover;
     background-repeat: no-repeat;
