@@ -9,7 +9,6 @@ export const CountriesProvider = ({ children }) => {
     const [ filteredCountries, setFilteredCountries] = useState([])
     const [ countryFoundMessage, setCountryFound ] = useState("")
 
-
     const filterByName = (name) => {
         
         fetch(`https://restcountries.com/v3.1/name/${name}`)
@@ -34,6 +33,14 @@ export const CountriesProvider = ({ children }) => {
 
     }
 
+    const filterByRegion = (region) => {
+
+        fetch(`https://restcountries.com/v3.1/region/${region}`)
+        .then(res => res.json())
+        .then(data => setFilteredCountries(data))
+        
+    }
+
     const getAllCountries = () => {
 
         fetch("https://restcountries.com/v3.1/all")
@@ -47,7 +54,7 @@ export const CountriesProvider = ({ children }) => {
     }
 
     return (
-        <CountriesContext.Provider value={{ allCountries, setAllCountries, filterByName, filteredCountries, getAllCountries, clearFilter, countryFoundMessage}}>
+        <CountriesContext.Provider value={{ allCountries, setAllCountries, filterByName, filteredCountries, getAllCountries, clearFilter, countryFoundMessage, filterByRegion}}>
             { children }
         </CountriesContext.Provider>
     )
