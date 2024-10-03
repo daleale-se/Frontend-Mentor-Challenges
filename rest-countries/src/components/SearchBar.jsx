@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { CountriesContext } from "../context/CountriesContext";
+import { Box, Flex, Icon, Input, Text } from "@chakra-ui/react";
 
 const SearchBar = () => {
 
@@ -21,13 +22,13 @@ const SearchBar = () => {
   }
 
   return (
-    <div>
-      <form>
-          <input type="search" name="search" value={search} onChange={handleSearchInputChange}/>
-          <button type="submit" onClick={handleSearchClick}><IoMdSearch /></button>
-      </form>
-      { countryFoundMessage !== "" && <p>{countryFoundMessage}</p> }
-    </div>
+    <Box>
+      <Flex alignItems="center" boxShadow="base" rounded="md" paddingX="5" backgroundColor="white" height="12">
+          <Box as="button" type="submit" onClick={handleSearchClick} width="10"><Icon as={IoMdSearch} verticalAlign="middle" color="#b2b2b2" fontSize="xl"/></Box>
+          <Input type="search" name="search" value={search} onChange={handleSearchInputChange} border="none"/>
+      </Flex>
+      { countryFoundMessage !== "" && <Text>{countryFoundMessage}</Text> }
+    </Box>
   )
 }
 

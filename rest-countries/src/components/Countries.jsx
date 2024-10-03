@@ -1,6 +1,8 @@
 import Card from "../components/Card";
 import { useContext, useEffect } from "react"
 import { CountriesContext } from "../context/CountriesContext";
+import { ImSpinner2 } from "react-icons/im";
+import { Icon } from "@chakra-ui/react";
 
 const Countries = () => {
 
@@ -25,7 +27,7 @@ const Countries = () => {
   }
   
     if (!allCountries && !filteredCountries) {
-      return <p>Loading...</p>;
+      return <p><Icon as={ImSpinner2}/></p>;
     }
   
   return (
