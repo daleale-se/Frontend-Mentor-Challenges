@@ -5,5 +5,6 @@ export default class MoveUi {
         this.color = color
     }
 
+    // make it optionally selectionable
 
 }

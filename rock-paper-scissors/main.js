@@ -1,67 +1,24 @@
-import Move from './src/classes/Move'
-import MoveLogic from './src/classes/MoveLogic'
-import MoveUi from './src/classes/MoveUi'
-import './style.css'
-
-const movements = [  
-  {
-    name: "rock",
-    img: "/icon-rock.svg",
-    color: "#DF3F5C",
-    beats: ["scissors", "lizard"]
-  },
-  {
-    name: "paper",
-    img: "/icon-paper.svg",
-    color: "#5671F3",
-    beats: ["rock", "spock"]
-  },
-  {
-    name: "scissors",
-    img: "/icon-scissors.svg",
-    color: "#EBA726",
-    beats: ["paper", "lizard"]
-  },
-  {
-    name: "lizard",
-    img: "/icon-lizard.svg",
-    color: "#8E5DE6",
-    beats: ["paper", "spock"]
-  },
-  {
-    name: "spock",
-    img: "/icon-spock.svg",
-    color: "#50BDD1",
-    beats: ["rock", "scissors"]
-  }
-]
-
-const randomChoice = (choices) => {
-  return choices[Math.floor(Math.random()*choices.length)]
-}
+import $ from "jquery";
+import "./style.css";
+import GameLogic from "./src/classes/GameLogic";
 
 const main = () => {
 
-  const choices = movements.map(({name, img, color, beats}) => {
+  $(document).ready(function () {
 
-    const moveLogic = new MoveLogic(name, beats)
-    const moveUi = new MoveUi(img, color)
-    return new Move(moveLogic, moveUi)
+    const game = new GameLogic()
 
-  })
+    $(".versus").hide();
+    $(".rules").hide();
 
-  const player = choices[0]
-  const house = randomChoice(choices)
-  console.log(player, house);
+    $(".play-again").on("click", function () {
+      $(".choices").show();
+      $(".versus").hide();
+    });
 
-  if (player.playsAgainst(house) === 1) {
-    console.log("you win");
-  }  else if (player.playsAgainst(house) === -1) {
-    console.log("you lose");
-  } else {
-    console.log("draw!");
-  }
+  });
 
-}
+  // score
+};
 
-main()
+main();
