@@ -15,3 +15,7 @@
     --very-light-gray: #fafafa;
     --white: #ffffff;
 }
+
+#input-search::placeholder {
+    color: #79797961;
+}

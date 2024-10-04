@@ -6,14 +6,12 @@ import SearchBar from "../components/SearchBar"
 const Home = () => {
 
   return (
-    <Flex flexDirection="column" alignItems="center" gap="5" backgroundColor="#fafafa">
-      <Flex flexDirection="column" alignItems="center"gap="5" marginTop="6">
+    <Flex flexDirection="column" alignItems="center" gap="5" backgroundColor="#fafafa" paddingY="6">
+      <Flex flexDirection="column" alignItems="center" gap="10">
         <SearchBar/>
         <Filter/>
       </Flex>
-      <div>
-        <Countries/>
-      </div>
+      <Countries/>
     </Flex>
   )
 }

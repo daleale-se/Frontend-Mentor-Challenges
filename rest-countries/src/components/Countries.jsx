@@ -2,7 +2,7 @@ import Card from "../components/Card";
 import { useContext, useEffect } from "react"
 import { CountriesContext } from "../context/CountriesContext";
 import { ImSpinner2 } from "react-icons/im";
-import { Icon } from "@chakra-ui/react";
+import { Grid, Icon } from "@chakra-ui/react";
 
 const Countries = () => {
 
@@ -31,11 +31,11 @@ const Countries = () => {
     }
   
   return (
-    <div>
+    <Grid templateColumns="75%" gap="10" paddingY="5" justifyContent="center">
         {filteredCountries && filteredCountries.length > 0
         ? filteredCountries.map(showCards)
         : (allCountries && allCountries.map(showCards))}
-    </div>
+    </Grid>
   )
 }
 

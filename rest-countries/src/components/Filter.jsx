@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { CountriesContext } from "../context/CountriesContext"
+import { Select } from "@chakra-ui/react"
 
 const regions = ["africa", "america", "asia", "europe", "oceania"]
 
@@ -19,12 +20,11 @@ const Filter = () => {
   }
 
   return (
-    <select name="region" value={filterRegion} onChange={handleSelectChange}>
-        <option value="">Filter by Region</option>
-        {regions.map(region => {
-            return <option key={region} value={region}>{region}</option>
-        })}
-    </select>
+    <Select variant="" placeholder='Filter by Region' name="region" value={filterRegion} onChange={handleSelectChange} textTransform="capitalize" fontSize="sm" alignSelf="start" w="52" backgroundColor="white" size="lg" boxShadow="base">
+      {regions.map(region => {
+          return <option key={region} value={region} style={{textTransform:"capitalize", paddingLeft:"2rem" }}>{region}</option>
+      })}
+    </Select>
   )
 }
 
