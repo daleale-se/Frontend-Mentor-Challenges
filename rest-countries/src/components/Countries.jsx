@@ -27,7 +27,7 @@ const Countries = () => {
   }
   
     if (!allCountries && !filteredCountries) {
-      return <p><Icon as={ImSpinner2}/></p>;
+      return <Icon as={ImSpinner2} fontSize="48" margin="auto"/>;
     }
   
   return (
