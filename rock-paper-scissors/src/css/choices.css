@@ -1,0 +1,91 @@
+.choices {
+    align-self: center;
+
+    background-image: url("./../assets/images/bg-pentagon.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 13rem;
+    height: 13rem;
+    position: relative;
+}
+
+.outside {
+  display: grid;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.5);
+
+  position: absolute;
+  z-index: 1;
+}
+
+.inside {
+  position: absolute;
+  z-index: 2;
+  box-shadow: 0px -35px 43px 11px rgba(0, 0, 0, 0.1);
+  place-self: center;
+  display: grid;
+
+  & > img {
+    position: absolute;
+    z-index: 2;
+    transform: rotate(180deg);
+    width: 2rem;
+    place-self: center;
+  }
+}
+
+.bigger {
+  width: 6rem;
+  height: 6rem;
+}
+
+.smaller {
+  width: 4.5rem;
+  height: 4.5rem;
+  transform: rotate(180deg);
+}
+
+.circle {
+  border-radius: 100%;
+  border-bottom-style: solid;
+  border-width: 4px;
+}
+
+.red {
+  background-color: #df3f5c;
+  border-color: #8f2f41;
+  right: -.5rem;
+  bottom: -2.5rem;
+}
+
+.purple {
+  background-color: #8B5AE3;
+  border-color: #6334b9;
+  left: -.5rem;
+  bottom: -2.5rem;
+}
+
+.orange {
+    background-color: #EBA726;
+    border-color: #b8811b;  
+    left: 3.5rem;
+    top: -3.25rem;
+}
+
+.blue {
+    background-color: #5671F3;
+    border-color: #3f51aa;
+    right: -3.25rem;
+    top: 2rem;
+}
+
+.light-blue {
+    background-color: #50BDD1;
+    border-color: #2397ab;  
+    left: -3.25rem;
+    top: 2rem;
+}
+
+.white {
+  background-color: #e3e3e3;
+  border-color: #cac9c9;
+}

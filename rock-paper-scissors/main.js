@@ -1,5 +1,5 @@
 import $ from "jquery";
-import "./style.css";
+import "./src/css/style.css";
 import GameLogic from "./src/classes/GameLogic";
 
 const main = () => {
@@ -16,9 +16,10 @@ const main = () => {
       $(".versus").hide();
     });
 
+    $(".button-rules").click()
+
   });
 
-  // score
 };
 
 main();

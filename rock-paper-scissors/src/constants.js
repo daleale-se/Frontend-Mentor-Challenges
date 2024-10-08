@@ -2,31 +2,31 @@ export const MOVEMENTS = [
     {
       name: "rock",
       img: "/icon-rock.svg",
-      color: "#DF3F5C",
+      color: "red",
       beats: ["scissors", "lizard"],
     },
     {
       name: "paper",
       img: "/icon-paper.svg",
-      color: "#5671F3",
+      color: "blue",
       beats: ["rock", "spock"],
     },
     {
       name: "scissors",
       img: "/icon-scissors.svg",
-      color: "#EBA726",
+      color: "orange",
       beats: ["paper", "lizard"],
     },
     {
       name: "lizard",
       img: "/icon-lizard.svg",
-      color: "#8E5DE6",
+      color: "purple",
       beats: ["paper", "spock"],
     },
     {
       name: "spock",
       img: "/icon-spock.svg",
-      color: "#50BDD1",
+      color: "light-blue",
       beats: ["rock", "scissors"],
     },
 ];

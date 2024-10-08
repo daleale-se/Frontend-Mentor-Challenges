@@ -59,19 +59,19 @@ export default class GameLogic {
     }
 
     createButtons() {
-        this.choices.forEach((el) => {
-            const newButton = $("<button></button>");
-            newButton.css("background-color", el.ui.color);
-            newButton.on("click", () => {
-              this.playRound(el);
-            });
-            const newImage = $("<img>").attr(
-              "src",
-              `./src/assets/images${el.ui.img}`
-            );
-            newButton.append(newImage);
-            $(".choices").append(newButton);
-          });
+        // this.choices.forEach((el) => {
+        //     const newButton = $("<button></button>");
+        //     newButton.css("background-color", el.ui.color);
+        //     newButton.on("click", () => {
+        //       this.playRound(el);
+        //     });
+        //     const newImage = $("<img>").attr(
+        //       "src",
+        //       `./src/assets/images${el.ui.img}`
+        //     );
+        //     newButton.append(newImage);
+        //     $(".choices").append(newButton);
+        //   });
     }
 
     updateResult(text) {
