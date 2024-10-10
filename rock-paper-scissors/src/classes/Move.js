@@ -14,4 +14,12 @@ export default class Move {
         return this.logic.tryBeats(moveName)
     }
 
+    addClickeableEvent(gameLogic) {
+        this.ui.addClickeableEvent(gameLogic, this)
+    }
+
+    selectedMove(player) {
+        this.ui.selectedMove(player)
+    }
+
 }

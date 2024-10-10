@@ -16,7 +16,13 @@ const main = () => {
       $(".versus").hide();
     });
 
-    $(".button-rules").click()
+    $(".btn-rules").click(() => {
+      $(".rules").show();
+    })
+
+    $(".btn-close-rules").click(() => {
+      $(".rules").hide();
+    })
 
   });
 
