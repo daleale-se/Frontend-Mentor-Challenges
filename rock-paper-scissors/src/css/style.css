@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 @import "./choices.css";
+@import "./rules.css";
+@import "./results.css";
 
 * {
   padding: 0;
@@ -16,10 +18,12 @@
 
   display: flex;
   flex-direction: column;
-  gap: 8rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
 aside {
+  width: 100%;
   padding: .75rem;
   display: flex;
   justify-content: space-between;
@@ -29,7 +33,7 @@ aside {
   border-radius: 8px;
 
   img {
-    width: 4rem;
+    width: 3.8rem;
   }
 
 }
@@ -60,10 +64,15 @@ aside {
 
 }
 
-.rules {
-  position: absolute;
-}
-
-.image-rules {
-  background-image: url("./../assets/images/image-rules-bonus.svg");
+.btn-rules {
+  padding: .6rem 2rem;
+  border: #ffffff92 solid 2px;
+  border-radius: 8px;
+  background-color: unset;
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
 }

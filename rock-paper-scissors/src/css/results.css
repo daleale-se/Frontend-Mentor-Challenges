@@ -1,0 +1,20 @@
+.versus {
+
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+
+    .moves {
+        display: flex;
+
+    }
+
+}
+
+.player-move, .house-move {
+
+    p {
+        text-transform: uppercase;
+    }
+
+}

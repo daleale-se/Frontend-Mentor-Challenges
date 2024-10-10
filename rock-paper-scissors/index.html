@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="./src/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>RPSSL game</title>
   </head>
   <body>
     <div id="app">
@@ -34,31 +34,36 @@
       </section>
 
       <section class="versus">
-        <div>
 
-          <div>
-            <div class="player-move"></div>
+        <div class="moves">
+
+          <div class="player-move">
+            <div class="player-move-ui"></div>
             <p>you picked</p>
           </div>
-          <div>
-            <div class="house-move"></div>
+          <div class="house-move">
+            <div class="house-move-ui"></div>
             <p>the house picked</p>
           </div>
 
         </div>
-        <div>
-          <h2 class="result"></h2>
+
+        <div class="result">
+          <h2></h2>
           <button class="play-again">play again</button>
         </div>
+
       </section>
 
       <section class="rules">
-        <div class="image-rules">
-
+        <div class="game-rules">
+          <p>rules</p>
+          <img src="./src/assets/images/image-rules-bonus.svg" alt="rules">
+          <button class="btn-close-rules"><img src="./src/assets/images/icon-close.svg" alt="close"></button>
         </div>
       </section>
 
-      <button class="button-rules">rules</button>
+      <button class="btn-rules">rules</button>
 
     </div>
     <script type="module" src="/main.js"></script>

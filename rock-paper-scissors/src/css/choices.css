@@ -25,8 +25,6 @@
   display: grid;
 
   & > img {
-    position: absolute;
-    z-index: 2;
     transform: rotate(180deg);
     width: 2rem;
     place-self: center;
@@ -52,40 +50,67 @@
 
 .red {
   background-color: #df3f5c;
-  border-color: #8f2f41;
+  border-color: #8f2f41;  
+}
+
+.red-pos {
   right: -.5rem;
-  bottom: -2.5rem;
+  bottom: -3rem;
 }
 
 .purple {
   background-color: #8B5AE3;
   border-color: #6334b9;
-  left: -.5rem;
-  bottom: -2.5rem;
+}
+
+.purple-pos {
+  left: -.75rem;
+  bottom: -3rem;
+
+  img {
+    width: 2.7rem;
+  }
 }
 
 .orange {
     background-color: #EBA726;
     border-color: #b8811b;  
-    left: 3.5rem;
-    top: -3.25rem;
+}
+
+.orange-pos {
+  left: 3.5rem;
+  top: -3.25rem;
 }
 
 .blue {
     background-color: #5671F3;
     border-color: #3f51aa;
-    right: -3.25rem;
-    top: 2rem;
+}
+
+.blue-pos {
+  right: -3.25rem;
+  top: 2rem;
 }
 
 .light-blue {
     background-color: #50BDD1;
     border-color: #2397ab;  
+}
+
+.light-blue-pos {
     left: -3.25rem;
     top: 2rem;
+
+  img {
+    width: 1.9rem;
+  }
 }
 
 .white {
   background-color: #e3e3e3;
   border-color: #cac9c9;
+}
+
+.clickeable {
+  cursor: pointer;
 }
