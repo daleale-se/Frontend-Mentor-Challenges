@@ -2,19 +2,101 @@
 
     display: flex;
     flex-direction: column;
-    gap: 6rem;
+    gap: 4rem;
 
     .moves {
         display: flex;
-
+        gap: 4rem;
     }
 
 }
 
 .player-move, .house-move {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
     p {
         text-transform: uppercase;
+        font-weight: 600;
+        font-size: .8rem;
+        color: white;
+        letter-spacing: 1px;
     }
 
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    p {
+        text-transform: uppercase;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+    }
+
+    .play-again {
+        padding: .8rem 3rem .7rem;
+        border: none;
+        border-radius: 8px;
+        background-color: white;
+        font-size: .9rem;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #3C4262;
+        cursor: pointer;      
+    }
+}
+
+@media screen and (min-width: 568px) {
+
+    .versus {
+        .moves {
+            gap: 8rem;
+        }
+    }
+
+    .player-move, .house-move {
+        width: 11rem;
+        gap: 4rem;
+        flex-direction: column-reverse;
+
+        p {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .versus {
+        position: relative;
+        .moves {
+            gap: 20rem;
+        }
+    }
+
+    .player-move, .house-move {
+        gap: 6rem;
+
+        p {
+            font-size: 1.25rem;
+        }
+
+    }
+
+    .result {
+        position: absolute;
+        top: 6rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;    
+    }
 }

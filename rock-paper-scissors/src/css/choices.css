@@ -9,12 +9,28 @@
     position: relative;
 }
 
+.selected {
+  transform: scale(1.15);
+}
+
+@media screen and (min-width: 478px) {
+  .choices {
+    margin-top: 4rem;
+    transform: scale(1.35);
+  }
+}
+
+@media screen and (min-width: 568px) {
+  .selected {
+    transform: scale(2);
+  }
+}
+
 .outside {
   display: grid;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.5);
 
   position: absolute;
-  z-index: 1;
 }
 
 .inside {
@@ -61,15 +77,15 @@
 .purple {
   background-color: #8B5AE3;
   border-color: #6334b9;
+  img {
+    width: 2.7rem;
+  }
 }
 
 .purple-pos {
   left: -.75rem;
   bottom: -3rem;
 
-  img {
-    width: 2.7rem;
-  }
 }
 
 .orange {
@@ -95,15 +111,15 @@
 .light-blue {
     background-color: #50BDD1;
     border-color: #2397ab;  
+    img {
+      width: 1.9rem;
+      margin-right: 4px;
+    }
 }
 
 .light-blue-pos {
     left: -3.25rem;
     top: 2rem;
-
-  img {
-    width: 1.9rem;
-  }
 }
 
 .white {

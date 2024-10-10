@@ -37,7 +37,7 @@
   }
 }
 
-@media screen and (min-width: 476px) {
+@media screen and (min-width: 478px) {
   .rules {
     display: grid;
     place-items: center;
