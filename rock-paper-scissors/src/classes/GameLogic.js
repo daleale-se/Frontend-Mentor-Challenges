@@ -22,6 +22,11 @@ export default class GameLogic {
 
         $(".choices").hide();
 
+        $(".house-move").css('visibility', 'hidden');
+        $(".result").hide()
+        $(".play-again").hide()
+
+
         setTimeout(() => {
             const house = randomChoice(this.choices);
             
@@ -38,9 +43,9 @@ export default class GameLogic {
                 this.updateResult("you draw")   
             }
 
-            // $(".result").show()
-            // $(".house-move").show()
-            // $(".play-again").show()
+            $(".house-move").css('visibility', 'visible');
+            $(".result").show()
+            $(".play-again").show()
 
         }, 1000)
       
@@ -63,7 +68,7 @@ export default class GameLogic {
     }
 
     updateResult(text) {
-        $(".result h2").text(text)
+        $(".result p").text(text)
     }
 
 }
