@@ -24,7 +24,7 @@ export const CountryDetailsProvider = ({children}) => {
                 tld: typeof country.tld === "string" ? country.tld : country.tld[0],
                 currencies: Object.values(country.currencies).map(currency => currency.name),
                 languages: Object.values(country.languages),
-                borderCountries: country.borders,
+                borders: country.borders || "(is an island)",
             })
         })
 
