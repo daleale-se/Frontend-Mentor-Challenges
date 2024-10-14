@@ -5,12 +5,10 @@ const config = {
   useSystemColorMode: false,
   styles: {
     global: {
-        // "body": {
-        //     padding: "0",
-        //     margin: "0",
-        //     "box-sizing": "border-box",
-        //     "font-family": "Nunito Sans",       
-        // }
+      "@keyframes spin": {
+        from: { transform: "rotate(0deg)" },
+        to: { transform: "rotate(360deg)" },
+      },
     }
   }
 }

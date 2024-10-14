@@ -11,7 +11,7 @@ const CountryDetails = () => {
     const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
 
     const { name } = useParams();
-    const { details, getDetails } = useContext(CountryDetailsContext)
+    const { details, getDetails, loading } = useContext(CountryDetailsContext)
 
     useEffect(() => {
       
@@ -20,11 +20,11 @@ const CountryDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (!details) {
-      return <Icon as={ImSpinner2} fontSize="48" margin="auto" />;
+    if (!details || loading) {
+      return <Icon className="spinner" as={ImSpinner2} animation="spin 1s linear infinite" fontSize="48" margin="auto" />;
     }  
 
-  return (
+    return (
     <Flex flexDirection={isLargerThan768 ? "row" : "column"} gap="16" fontFamily="Nunito Sans" justifyContent={isLargerThan768 ? "center" : ""} width="full">
         
         <Img src={details.flag} alt="flag" alignSelf="center" style={{width: isLargerThan578 ? "45%" : "", minWidth: isLargerThan578 ? "25rem" : "", maxWidth: "28rem"}}/>

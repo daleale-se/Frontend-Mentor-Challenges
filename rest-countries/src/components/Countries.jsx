@@ -2,11 +2,12 @@ import Card from "../components/Card";
 import { useContext, useEffect } from "react"
 import { CountriesContext } from "../context/CountriesContext";
 import { ImSpinner2 } from "react-icons/im";
-import { Icon, SimpleGrid } from "@chakra-ui/react";
+import { Icon, SimpleGrid, useMediaQuery } from "@chakra-ui/react";
 
 const Countries = () => {
 
-    const {getAllCountries, loadMoreCountries, allCountries, filteredCountries} = useContext(CountriesContext)
+    const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
+    const {getAllCountries, loadMoreCountries, allCountries, filteredCountries, loading} = useContext(CountriesContext)
 
     useEffect(() => {
   
@@ -21,7 +22,6 @@ const Countries = () => {
         const scrolledTo = window.scrollY + window.innerHeight
         const threshold = 300
         const isReachBottom = document.body.scrollHeight - threshold <= scrolledTo
-        console.log(isReachBottom)
         if (isReachBottom) loadMoreCountries()
       };
       
@@ -45,12 +45,12 @@ const Countries = () => {
       return <Card key={name.common} data={countryData}/>
     }
 
-    if (!allCountries && !filteredCountries) {
-      return <Icon as={ImSpinner2} fontSize="48" margin="auto"/>;
+    if (loading) {
+      return <Icon className="spinner" as={ImSpinner2} fontSize="48" margin="auto"/>;
     }
   
     return (
-      <SimpleGrid columns={[1, 2, 3, 4]} gap="10" paddingY="5" paddingX="8" justifyContent="center">
+      <SimpleGrid columns={[1, 2, 3, 4]} gap="10" paddingY="5" paddingX={isLargerThan768 ? "20" : "10"} justifyContent="center">
           {filteredCountries && filteredCountries.length > 0
           ? filteredCountries.map(showCards)
           : (allCountries && allCountries.map(showCards))}

@@ -6,13 +6,15 @@ export const CountryDetailsContext = createContext()
 export const CountryDetailsProvider = ({children}) => {
 
     const [ details, setDetails ] = useState()
+    const [ loading, setLoading ] = useState(false)
 
     const getDetails = (name) => {
         
+        setLoading(true)
         fetch(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => res.json())
         .then(data => {  
-            const country = data[0]          
+            const country = data[0]
             setDetails({
                 flag: country.flags.svg,
                 name: country.name.common,
@@ -26,11 +28,12 @@ export const CountryDetailsProvider = ({children}) => {
                 languages: Object.values(country.languages),
                 borders: country.borders || "(is an island)",
             })
+            setLoading(false)
         })
 
     }
 
-    return <CountryDetailsContext.Provider value={{ details, getDetails }}>
+    return <CountryDetailsContext.Provider value={{ details, getDetails, loading }}>
         { children }
     </CountryDetailsContext.Provider>
 

@@ -9,9 +9,11 @@ export const CountriesProvider = ({ children }) => {
     const [ filteredCountries, setFilteredCountries] = useState([])
     const [ countryFoundMessage, setCountryFound ] = useState("")
     const [ countryLimit, setCountryLimit ] = useState(12)
+    const [ loading, setLoading ] = useState(false)
 
     const filterByName = (name) => {
         
+        setLoading(true)
         fetch(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => {
             if (!res.ok) {
@@ -22,6 +24,7 @@ export const CountriesProvider = ({ children }) => {
         .then(data => {
             if (data && data.length > 0){
                 setFilteredCountries(data)
+                setLoading(false)
             } else {
                 throw new Error(`Country not found: ${name}`);
             }})
@@ -36,24 +39,33 @@ export const CountriesProvider = ({ children }) => {
 
     const filterByRegion = (region) => {
 
+        setLoading(true)
         fetch(`https://restcountries.com/v3.1/region/${region}`)
         .then(res => res.json())
-        .then(data => setFilteredCountries(data))
+        .then(data => {
+            setFilteredCountries(data)
+            setLoading(false)
+        })
         
     }
 
     const getAllCountries = () => {
 
+        setLoading(true)
         const storedCountries = localStorage.getItem('countries');
         if (storedCountries) {
             const countries = JSON.parse(storedCountries)
             setAllCountries(countries.slice(0, countryLimit))
+            setTimeout(() => {
+                setLoading(false)
+            }, 100)
         } else {
             fetch('https://restcountries.com/v3.1/all')
             .then(response => response.json())
             .then(data => {
                 setAllCountries(data.slice(0, countryLimit))
                 localStorage.setItem('countries', JSON.stringify(data));
+                setLoading(false)
             });
         }
 
@@ -63,16 +75,15 @@ export const CountriesProvider = ({ children }) => {
 
         const storedCountries = localStorage.getItem('countries');
         if (storedCountries) {
-            const newLimit = countryLimit + 12
-            setCountryLimit(newLimit)
-
-            console.log(newLimit, countryLimit);
-
-            const countries = JSON.parse(storedCountries);
-            const limitedCountries = countries.slice(0, newLimit)
-            setAllCountries(limitedCountries)
+            setCountryLimit(prevLimit => {
+                const newLimit = prevLimit + 12; 
+                const countries = JSON.parse(storedCountries);
+                const limitedCountries = countries.slice(0, newLimit);
+                setAllCountries(limitedCountries);
+                return newLimit;
+            });
         }
-    
+        
     }
 
     const clearFilter = () => {
@@ -80,7 +91,7 @@ export const CountriesProvider = ({ children }) => {
     }
 
     return (
-        <CountriesContext.Provider value={{ allCountries, setAllCountries, filterByName, filteredCountries, getAllCountries, clearFilter, countryFoundMessage, filterByRegion, loadMoreCountries}}>
+        <CountriesContext.Provider value={{ allCountries, setAllCountries, filterByName, filteredCountries, getAllCountries, clearFilter, countryFoundMessage, filterByRegion, loadMoreCountries, loading}}>
             { children }
         </CountriesContext.Provider>
     )

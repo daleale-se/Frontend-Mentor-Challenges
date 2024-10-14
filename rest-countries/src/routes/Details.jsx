@@ -8,7 +8,7 @@ const Details = () => {
   return (
     <div>
         <Header/>
-        <Flex flexDirection="column" padding="8" gap="16" backgroundColor="#fafafa">
+        <Flex flexDirection="column" padding="8" gap="16">
             <ChakraLink as={Link} to="/" alignSelf="start" rounded="md" boxShadow="md" paddingX="6" paddingY="2">
                 <Box as="button"><Icon as={FaArrowLeftLong} marginRight="2" verticalAlign="middle"/>Back</Box>
             </ChakraLink>
