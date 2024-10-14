@@ -2,11 +2,11 @@ import Card from "../components/Card";
 import { useContext, useEffect } from "react"
 import { CountriesContext } from "../context/CountriesContext";
 import { ImSpinner2 } from "react-icons/im";
-import { Grid, Icon } from "@chakra-ui/react";
+import { Icon, SimpleGrid } from "@chakra-ui/react";
 
 const Countries = () => {
 
-    const {getAllCountries, allCountries, filteredCountries} = useContext(CountriesContext)
+    const {getAllCountries, loadMoreCountries, allCountries, filteredCountries} = useContext(CountriesContext)
 
     useEffect(() => {
   
@@ -14,7 +14,26 @@ const Countries = () => {
       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+
+      const onscroll = () => {
+        const scrolledTo = window.scrollY + window.innerHeight
+        const threshold = 300
+        const isReachBottom = document.body.scrollHeight - threshold <= scrolledTo
+        console.log(isReachBottom)
+        if (isReachBottom) loadMoreCountries()
+      };
+      
+      window.addEventListener("scroll", onscroll);
+
+      return () => {
+        window.removeEventListener("scroll", onscroll);
+      };
   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     const showCards = ({ flags, name, population, region, capital }) => {
       const countryData = {
         flag: flags.svg,
@@ -24,19 +43,19 @@ const Countries = () => {
         capital: capital ? capital[0] : "Unknow"
       }
       return <Card key={name.common} data={countryData}/>
-  }
-  
+    }
+
     if (!allCountries && !filteredCountries) {
       return <Icon as={ImSpinner2} fontSize="48" margin="auto"/>;
     }
   
-  return (
-    <Grid templateColumns="75%" gap="10" paddingY="5" justifyContent="center">
-        {filteredCountries && filteredCountries.length > 0
-        ? filteredCountries.map(showCards)
-        : (allCountries && allCountries.map(showCards))}
-    </Grid>
-  )
+    return (
+      <SimpleGrid columns={[1, 2, 3, 4]} gap="10" paddingY="5" paddingX="8" justifyContent="center">
+          {filteredCountries && filteredCountries.length > 0
+          ? filteredCountries.map(showCards)
+          : (allCountries && allCountries.map(showCards))}
+      </SimpleGrid>
+    )
 }
 
 export default Countries

@@ -10,7 +10,7 @@ const Card = ({data}) => {
   return (
     <Link to={`country/${name}`}>
       <VStack boxShadow="md" rounded="md">
-          <Image src={flag} alt="flag" roundedTop="md"/>
+          <Image src={flag} alt="flag" roundedTop="md"  width="full"/>
           <Stack alignSelf="start" padding="6">
             <Heading size="md" marginBottom="2">{name}</Heading>
             <Flex gap="1" flexDirection="column">

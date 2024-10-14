@@ -1,12 +1,13 @@
 import { MdOutlineDarkMode, MdDarkMode } from "react-icons/md";
-import { useColorMode, Icon, Flex, Heading, Text } from "@chakra-ui/react";
+import { useColorMode, Icon, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
 
 const Header = () => {
-
+  
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Flex position="sticky" justifyContent="space-around" alignItems="center" paddingY="6" boxShadow="base">
+    <Flex position="sticky" justifyContent={isLargerThan768 ? "space-between" : "space-around"} alignItems="center" paddingY="6" paddingX="8" boxShadow="base">
         <Heading fontFamily="Nunito Sans" size="sm" >Where in the world?</Heading>
         <Flex as="button" onClick={toggleColorMode} alignItems="center">
           <Icon as={colorMode === "light" ? MdOutlineDarkMode : MdDarkMode} fontSize="sm" />

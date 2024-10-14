@@ -8,6 +8,7 @@ export const CountriesProvider = ({ children }) => {
     const [ allCountries, setAllCountries ] = useState([])
     const [ filteredCountries, setFilteredCountries] = useState([])
     const [ countryFoundMessage, setCountryFound ] = useState("")
+    const [ countryLimit, setCountryLimit ] = useState(12)
 
     const filterByName = (name) => {
         
@@ -43,9 +44,34 @@ export const CountriesProvider = ({ children }) => {
 
     const getAllCountries = () => {
 
-        fetch("https://restcountries.com/v3.1/all")
-        .then(res => res.json())
-        .then(data => setAllCountries(data))
+        const storedCountries = localStorage.getItem('countries');
+        if (storedCountries) {
+            const countries = JSON.parse(storedCountries)
+            setAllCountries(countries.slice(0, countryLimit))
+        } else {
+            fetch('https://restcountries.com/v3.1/all')
+            .then(response => response.json())
+            .then(data => {
+                setAllCountries(data.slice(0, countryLimit))
+                localStorage.setItem('countries', JSON.stringify(data));
+            });
+        }
+
+    }
+
+    const loadMoreCountries = () => {
+
+        const storedCountries = localStorage.getItem('countries');
+        if (storedCountries) {
+            const newLimit = countryLimit + 12
+            setCountryLimit(newLimit)
+
+            console.log(newLimit, countryLimit);
+
+            const countries = JSON.parse(storedCountries);
+            const limitedCountries = countries.slice(0, newLimit)
+            setAllCountries(limitedCountries)
+        }
     
     }
 
@@ -54,7 +80,7 @@ export const CountriesProvider = ({ children }) => {
     }
 
     return (
-        <CountriesContext.Provider value={{ allCountries, setAllCountries, filterByName, filteredCountries, getAllCountries, clearFilter, countryFoundMessage, filterByRegion}}>
+        <CountriesContext.Provider value={{ allCountries, setAllCountries, filterByName, filteredCountries, getAllCountries, clearFilter, countryFoundMessage, filterByRegion, loadMoreCountries}}>
             { children }
         </CountriesContext.Provider>
     )
