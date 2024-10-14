@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')).render(
       <CountriesProvider>
         <ChakraProvider theme={theme}>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-          <RouterProvider router={router} />  
+          <RouterProvider router={router}/>  
         </ChakraProvider>
       </CountriesProvider>
     </CountryDetailsProvider>

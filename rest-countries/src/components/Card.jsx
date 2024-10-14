@@ -1,15 +1,16 @@
-import { Flex, Heading, HStack, Image, Stack, Text, VStack } from "@chakra-ui/react"
+import { Flex, Heading, HStack, Image, Stack, Text, useColorMode, VStack } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 
 // eslint-disable-next-line react/prop-types
 const Card = ({data}) => {
 
+  const { colorMode } = useColorMode()
     // eslint-disable-next-line react/prop-types
-    const {flag, name, population, region, capital} = data
+  const {flag, name, population, region, capital} = data
 
   return (
     <Link to={`country/${name}`}>
-      <VStack boxShadow="md" rounded="md">
+      <VStack boxShadow="md" rounded="md" background={colorMode === "dark" ? "#2B3743" : "#fafafa"} overflow="hidden">
           <Image src={flag} alt="flag" roundedTop="md" width="full" maxHeight="48"/>
           <Stack alignSelf="start" padding="6">
             <Heading size="md" marginBottom="2">{name}</Heading>

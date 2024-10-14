@@ -1,11 +1,13 @@
 import { useContext, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { CountryDetailsContext } from "../context/CountryDetailsContext";
-import { Flex, Heading, HStack, Icon, Img, Stack, Text } from "@chakra-ui/react";
+import { Flex, Heading, HStack, Icon, Img, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { ImSpinner2 } from "react-icons/im";
 import { useMediaQuery } from '@chakra-ui/react'
 
 const CountryDetails = () => {
+
+    const { colorMode } = useColorMode()
 
     const [isLargerThan578] = useMediaQuery('(min-width: 578px)')
     const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
@@ -27,11 +29,12 @@ const CountryDetails = () => {
     return (
     <Flex flexDirection={isLargerThan768 ? "row" : "column"} gap="16" fontFamily="Nunito Sans" justifyContent={isLargerThan768 ? "center" : ""} width="full">
         
-        <Img src={details.flag} alt="flag" alignSelf="center" style={{width: isLargerThan578 ? "45%" : "", minWidth: isLargerThan578 ? "25rem" : "", maxWidth: "28rem"}}/>
+        <Img src={details.flag} alt="flag" alignSelf="center" style={{width: isLargerThan578 ? "45%" : "100%", minWidth: isLargerThan578 ? "25rem" : ""}}/>
         
         <Stack spacing="6" style={{maxWidth: "36rem"}}>
           <Heading size={isLargerThan578 ? "lg" : "md"} marginTop="4" fontFamily="Nunito Sans" textAlign={isLargerThan578 && !isLargerThan768 ? "center" : "left"}>{details.name}</Heading>
-          <Flex flexDirection={isLargerThan578 ? "row" : "column"} justifyContent={isLargerThan578 ? "center" : ""} gap="10">
+          
+          <Flex flexDirection={isLargerThan578 ? "row" : "column"} justifyContent={isLargerThan578 ? "left" : ""} gap="10">
 
               <Stack justifyContent="start">
                 <HStack>
@@ -78,7 +81,7 @@ const CountryDetails = () => {
             { typeof details.borders === 'string'  
             ? <Text justifySelf="flex-start">{details.borders}</Text>
             : <Flex gap="3" wrap="wrap" justifyContent="center">
-                {details.borders.map(country => <Text key={country} boxShadow="md" paddingX="5" paddingY="1">{country}</Text>)}
+                {details.borders.map(country => <Text key={country} boxShadow="md" rounded="base" paddingX="5" paddingY="1" backgroundColor={colorMode === "dark" ? "#2B3743" : "white"}>{country}</Text>)}
               </Flex>}
           </Stack>
 
