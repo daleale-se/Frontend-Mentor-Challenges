@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 export const CountryDetailsContext = createContext()
 
@@ -8,9 +9,11 @@ export const CountryDetailsProvider = ({children}) => {
     const [ details, setDetails ] = useState()
     const [ loading, setLoading ] = useState(false)
 
-    const getDetails = (name) => {
+
+    const getDetails = async (name) => {
         
         setLoading(true)
+
         fetch(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => res.json())
         .then(data => {  
@@ -30,6 +33,10 @@ export const CountryDetailsProvider = ({children}) => {
             })
             setLoading(false)
         })
+        .catch((error) => {
+            console.error("Error fetching country data:", error);
+            setLoading(false)
+        });
 
     }
 

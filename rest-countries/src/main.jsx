@@ -2,22 +2,26 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import theme from './theme.js'
 import Home from './routes/Home.jsx'
 import Details from './routes/Details.jsx'
 import { CountriesProvider } from './context/CountriesContext.jsx'
 import { CountryDetailsProvider } from './context/CountryDetailsContext.jsx'
+import { detailsLoader } from "./detailsLoader.js"
+import DetailsError from './routes/DetailsError.jsx';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Home/>,
   },
   {
     path: "/country/:name",
-    element: <Details/>
-  }
+    element: <Details/>,
+    loader: detailsLoader,
+    errorElement: <DetailsError/>
+  },
 ]);
 
 
