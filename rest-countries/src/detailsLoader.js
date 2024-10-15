@@ -6,8 +6,8 @@ export const detailsLoader = async ({ params }) => {
       throw new Response("Country Not Found", { status: 404 });
     }
   
-    // const data = await response.json();
+    const data = await response.json();
 
-    // return {country:data[0]}
+    return {country:data[0]}
     
 };
