@@ -1,14 +1,11 @@
+import { useContext } from "react"
 import Todo from "./Todo"
-
-const todos = [
-    {title:"todo1",checked:false},
-    {title:"todo2",checked:true},
-    {title:"todo3",checked:false}
-]
-
-const todosActive = todos.filter(todo => !todo.checked) 
+import { TodoContext } from "../TodoContext"
 
 const TodoList = () => {
+
+  const {todos} = useContext(TodoContext)
+
   return (
     <div>
       <div>
@@ -17,7 +14,7 @@ const TodoList = () => {
           })}
       </div>
       <div className="flex justify-between">
-        <p>{todosActive.length} items left</p>
+        <p>{todos.length} items left</p>
         <p>clear completed</p>
       </div>
     </div>
