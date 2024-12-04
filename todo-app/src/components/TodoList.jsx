@@ -6,12 +6,20 @@ const todos = [
     {title:"todo3",checked:false}
 ]
 
+const todosActive = todos.filter(todo => !todo.checked) 
+
 const TodoList = () => {
   return (
     <div>
-        {todos.map(todo => {
-            return <Todo key={todo.title} todo={todo}/>
-        })}
+      <div>
+          {todos.map(todo => {
+              return <Todo key={todo.title} todo={todo}/>
+          })}
+      </div>
+      <div className="flex justify-between">
+        <p>{todosActive.length} items left</p>
+        <p>clear completed</p>
+      </div>
     </div>
   )
 }

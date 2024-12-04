@@ -1,7 +1,11 @@
 
 const Filter = () => {
   return (
-    <div>Filter</div>
+    <div className="flex gap-2">
+      <button>all</button>
+      <button>active</button>
+      <button>completed</button>
+    </div>
   )
 }
 
