@@ -1,18 +1,16 @@
-// import { useContext } from "react"
-// import { TodoContext } from "../TodoContext"
-
 import { useContext } from "react"
 import { TodoContext } from "../TodoContext"
 
-const Filter = () => {
+// eslint-disable-next-line react/prop-types
+const Filter = ({setFilteredTodos}) => {
 
-  const {setFilter} = useContext(TodoContext)
+  const {showAll, showCompleted, showActives} = useContext(TodoContext)
 
   return (
     <div className="flex gap-2">
-      <button onClick={() => setFilter("all")}>all</button>
-      <button onClick={() => setFilter("active")}>active</button>
-      <button onClick={() => setFilter("completed")}>completed</button>
+      <button onClick={() => setFilteredTodos(showAll())}>all</button>
+      <button onClick={() => setFilteredTodos(showActives())}>active</button>
+      <button onClick={() => setFilteredTodos(showCompleted())}>completed</button>
     </div>
   )
 }

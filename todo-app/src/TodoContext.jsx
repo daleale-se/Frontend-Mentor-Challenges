@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useReducer } from 'react';
 import reducer from './Reducer';
 
 const initialState = [
@@ -13,20 +13,15 @@ export const TodoContext = createContext();
 // eslint-disable-next-line react/prop-types
 const TodoProvider = ({children}) => {
 
-    const [filter, setFilter] = useState("all")
     const [todos, dispatch] = useReducer(reducer, initialState);
 
-    const filteredTodos = () => {
-        if (filter === "all") {
-            return todos;
-        } else if (filter === "completed") {
-            return todos.filter(todo => todo.checked)
-        } else if (filter === "active") {
-            return todos.filter(todo => !todo.checked)
-        }
-    }
+    const showAll = () => todos
 
-    return <TodoContext.Provider value={{dispatch, setFilter, filteredTodos}}>
+    const showCompleted = () => todos.filter(todo => todo.checked)
+
+    const showActives = () => todos.filter(todo => !todo.checked)
+
+    return <TodoContext.Provider value={{dispatch, todos, showAll, showCompleted, showActives}}>
         {children}
     </TodoContext.Provider>
 }
