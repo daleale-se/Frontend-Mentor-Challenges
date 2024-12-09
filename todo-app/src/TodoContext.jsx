@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
 import reducer from './Reducer';
 
 const initialState = [
@@ -14,14 +14,17 @@ export const TodoContext = createContext();
 const TodoProvider = ({children}) => {
 
     const [todos, dispatch] = useReducer(reducer, initialState);
+    const [filter, setFilter] = useState("show-all")
 
-    const showAll = () => todos
+    const filteredTodos = () => {
+        switch(filter) {
+            case "show-all": return todos
+            case "show-completed" : return todos.filter(todo => todo.checked)
+            case "show-actives" : return todos.filter(todo => !todo.checked)
+        }
+    }
 
-    const showCompleted = () => todos.filter(todo => todo.checked)
-
-    const showActives = () => todos.filter(todo => !todo.checked)
-
-    return <TodoContext.Provider value={{dispatch, todos, showAll, showCompleted, showActives}}>
+    return <TodoContext.Provider value={{dispatch, todos, setFilter, filteredTodos}}>
         {children}
     </TodoContext.Provider>
 }
