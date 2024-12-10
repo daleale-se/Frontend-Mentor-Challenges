@@ -16,9 +16,9 @@ const Todo = ({todo}) => {
   }
 
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 border border-blue-600 rounded-lg items-center">
         <button className="border border-slate-400 h-8 w-8 rounded-full" onClick={handleChecked}></button>
-        <p className={todo.checked?"line-through":""}>{todo.title}</p>
+        <p className={`${todo.checked?"line-through":""} hover:cursor-grab`}>{todo.title}</p>
         <button onClick={handleRemoveTodo}>x</button>
     </div>
   )

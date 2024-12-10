@@ -22,6 +22,9 @@ export default function reducer(state, action) {
     case "clear-completed": {
       return state.filter(todo => !todo.checked)
     }
+    case "reorder": {
+      return action.payload
+    }
     default:
       return "Unrecognized command";
   }
