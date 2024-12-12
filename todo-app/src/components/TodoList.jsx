@@ -26,12 +26,12 @@ const TodoList = () => {
             values={filteredTodos()} // Pass filtered todos to the list
             onChange={handleReorder} // Handle reordering
             renderList={({ children, props }) => (
-                <div {...props} className="w-full">
+                <div {...props} className="p-2 border rounded mb-2 flex flex-col gap-2">
                     {children}
                 </div>
             )}
             renderItem={({ value, props }) => (
-                <div {...props} key={value.title} className="p-2 border rounded mb-2">
+                <div {...props} key={value.title} >
                     <Todo todo={value}/>
                 </div>
             )}
