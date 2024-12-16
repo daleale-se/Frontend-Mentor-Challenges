@@ -570,10 +570,6 @@ video {
   width: 2rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -626,10 +622,6 @@ video {
 
 .p-2 {
   padding: 0.5rem;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .uppercase {
