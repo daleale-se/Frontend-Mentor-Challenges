@@ -1,11 +1,18 @@
 import TodoInput from "./TodoInput"
 
+const getUserTodos = () => {
+  const username = "manguete"
+  fetch(`http://localhost:3000/todos/${username}`)
+  .then(res => res.json())
+  .then(data => console.log(data))
+}
+
 const Header = () => {
   return (
     <header>
         <div className="flex justify-between">
             <h1 className="uppercase">todo</h1>
-            <span>lightmode</span>
+            <button onClick={getUserTodos}>lightmode</button>
         </div>
         <TodoInput/>
     </header>

@@ -1,7 +1,33 @@
 const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
+
+const filePath = "./data/todos.csv"
+
+app.use(cors());
+
+app.get("/todos/:username", (req, res) => {
+    const {username} = req.params
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+          console.error('Error reading the file:', err);
+          return;
+        }
+
+        const rows = data.split('\n');
+        const todos = rows.map(todo => todo.split(","))
+        const userTodos = todos.filter(todo => todo[0] === username).map(todo => ({
+            title: todo[1],
+            checked: Boolean(todo[2]),
+            id: todo[3]
+        }))
+
+        res.send(userTodos)
+    })
+})
 
 app.listen(PORT, (error) =>{
     if(!error)
