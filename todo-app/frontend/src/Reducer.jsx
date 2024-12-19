@@ -15,31 +15,71 @@
 export default function reducer(state, action) {
     switch (action.type) {
     case "check": {
-        const updatedTodos = JSON.parse(JSON.stringify(state))
+        const updatedTodos = JSON.parse(JSON.stringify(state.originalTodos))
         const todo = updatedTodos.find(todo => todo.id === action.payload)
         todo.checked = !todo.checked;
-        return updatedTodos;
+        return {
+          ...state,
+          originalTodos: updatedTodos
+        };
     }
-    case "remove":
-      return state.filter(todo => todo.id !== action.payload)
+    case "remove":{
+      const updatedTodos = state.originalTodos.filter(todo => todo.id !== action.payload)
+      return {
+        ...state,
+        originalTodos: updatedTodos
+      }
+    }
     case "create-todo": {
       const newTodo = {
         title: action.payload,
         id: new Date().valueOf(),
         checked: false
       }
-      const updatedTodos = JSON.parse(JSON.stringify(state))
+      const updatedTodos = JSON.parse(JSON.stringify(state.originalTodos))
       updatedTodos.push(newTodo)
-      return updatedTodos;
+      return {
+        ...state,
+        originalTodos: updatedTodos
+      }
     }
     case "clear-completed": {
-      return state.filter(todo => !todo.checked)
+      const updatedTodos = state.originalTodos.filter(todo => !todo.checked)
+      return {
+        ...state,
+        originalTodos: updatedTodos
+      }
     }
     case "reorder": {
-      return action.payload
+      return {
+        ...state,
+        originalTodos: action.payload
+      }
     }
+    // is necessary?
     case "fetch-todos": {
-      return Array.isArray(action.payload) ? action.payload : state;
+      return {
+        ...state,
+        originalTodos: Array.isArray(action.payload) ? action.payload : state.originalTodos
+      }
+    }
+    case "show-all": {
+      return {
+        ...state,
+        filteredTodos: JSON.parse(JSON.stringify(state.originalTodos))
+      }
+    }
+    case "show-completed": {
+      return {
+        ...state,
+        filteredTodos: state.originalTodos.filter((todo) => todo.checked)
+      }
+    }
+    case "show-actives": {
+      return {
+        ...state,
+        filteredTodos: state.originalTodos.filter((todo) => !todo.checked)
+      }
     }
     default:
       return "Unrecognized command";

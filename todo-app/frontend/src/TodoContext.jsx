@@ -1,11 +1,11 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useReducer } from 'react';
 import reducer from './Reducer';
 
-// const initialState = {
-//         loading: false,
-//         originalTodos: [],
-//         filteredTodos: []
-// }
+const initialState = {
+  loading: false,
+  originalTodos: [],
+  filteredTodos: []
+}
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const TodoContext = createContext();
@@ -13,23 +13,9 @@ export const TodoContext = createContext();
 // eslint-disable-next-line react/prop-types
 const TodoProvider = ({children}) => {
 
-    const [todos, dispatch] = useReducer(reducer, []);
-    const [filter, setFilter] = useState("show-all")
+    const [state, dispatch] = useReducer(reducer, initialState);
 
-    const filteredTodos = () => {
-        switch (filter) {
-          case "show-all":
-            return todos;
-          case "show-completed":
-            return todos.filter((todo) => todo.checked);
-          case "show-actives":
-            return todos.filter((todo) => !todo.checked);
-          default:
-            return todos;
-        }
-      }
-
-    return <TodoContext.Provider value={{dispatch, todos, setFilter, filteredTodos}}>
+    return <TodoContext.Provider value={{dispatch, state}}>
         {children}
     </TodoContext.Provider>
 }
