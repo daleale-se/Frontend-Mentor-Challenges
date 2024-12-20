@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import Todo from "./Todo"
 import { TodoContext } from "../TodoContext"
 import Filter from "./Filter"
@@ -13,9 +13,6 @@ const getUserTodos = async (username) => {
 const TodoList = () => {
 
   const {dispatch, state} = useContext(TodoContext)
-  // const [filter, setFilter] = useState("all")
-  
-  // const todos = filteredTodos()
   const todos = state.filteredTodos
   const incompletedTodos = todos.filter(todo => !todo.checked)
 
@@ -23,26 +20,24 @@ const TodoList = () => {
     async function fetchData() {
         const username = "manguete"
         const userTodos = await getUserTodos(username)
-        dispatch({type: "fetch-todos", payload: userTodos})
-        dispatch({type: "show-all"})
+        dispatch({type: "reorder", payload: userTodos})
     }
     fetchData()
   }, [dispatch])
 
   const handleClearCompleted = () => {
     dispatch({type: "clear-completed"})
-    dispatch({type: "show-all"})
   }
 
   const handleReorder = ({ oldIndex, newIndex }) => {
     const updatedTodos = arrayMove(todos, oldIndex, newIndex);
-    dispatch({ type: "reorder", payload: updatedTodos });
-    dispatch({type: "show-all"})
+    dispatch({type: "reorder", payload: updatedTodos});
   };
 
   return (
     <div>
       <div className="flex flex-col gap-4 items-center">
+        {todos.length > 0 ? 
           <List
             values={todos}
             onChange={handleReorder}
@@ -57,6 +52,8 @@ const TodoList = () => {
                 </div>
             )}
           />
+        : <h2>no todos!</h2> 
+        }
       </div>
       <div className="flex justify-between">
         <p>{incompletedTodos.length} items left</p>

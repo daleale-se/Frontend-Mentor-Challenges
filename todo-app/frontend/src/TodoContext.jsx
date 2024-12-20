@@ -4,7 +4,8 @@ import reducer from './Reducer';
 const initialState = {
   loading: false,
   originalTodos: [],
-  filteredTodos: []
+  filteredTodos: [],
+  filter: "show-all"
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

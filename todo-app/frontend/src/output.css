@@ -624,6 +624,10 @@ video {
   padding: 0.5rem;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .uppercase {
   text-transform: uppercase;
 }

@@ -1,16 +1,13 @@
-// const getUserTodos = () => {
-//   const username = "manguete"
-//   fetch(`http://localhost:3000/todos/${username}`)
-//   .then(res => res.json())
-//   .then(data => data)
-// }
-
-// const getUserTodos = async (username) => {
-//   const response = await fetch(`http://localhost:3000/todos/${username}`);
-//   const data = await response.json();
-//   return data;
-// };
-
+const applyFilter = (todos, filter) => {
+  switch (filter) {
+    case "show-completed":
+      return todos.filter((todo) => todo.checked);
+    case "show-actives":
+      return todos.filter((todo) => !todo.checked);
+    default:
+      return todos;
+  }
+};
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -20,14 +17,16 @@ export default function reducer(state, action) {
         todo.checked = !todo.checked;
         return {
           ...state,
-          originalTodos: updatedTodos
+          originalTodos: updatedTodos,
+          filteredTodos: applyFilter(updatedTodos, state.filter),
         };
     }
     case "remove":{
       const updatedTodos = state.originalTodos.filter(todo => todo.id !== action.payload)
       return {
         ...state,
-        originalTodos: updatedTodos
+        originalTodos: updatedTodos,
+        filteredTodos: applyFilter(updatedTodos, state.filter),
       }
     }
     case "create-todo": {
@@ -40,48 +39,33 @@ export default function reducer(state, action) {
       updatedTodos.push(newTodo)
       return {
         ...state,
-        originalTodos: updatedTodos
+        originalTodos: updatedTodos,
+        filteredTodos: applyFilter(updatedTodos, state.filter),
       }
     }
     case "clear-completed": {
       const updatedTodos = state.originalTodos.filter(todo => !todo.checked)
       return {
         ...state,
-        originalTodos: updatedTodos
+        originalTodos: updatedTodos,
+        filteredTodos: applyFilter(updatedTodos, state.filter),
       }
     }
     case "reorder": {
       return {
         ...state,
-        originalTodos: action.payload
+        originalTodos: action.payload,
+        filteredTodos: applyFilter(action.payload, state.filter),
       }
     }
-    // is necessary?
-    case "fetch-todos": {
+    case "set-filter": {
       return {
         ...state,
-        originalTodos: Array.isArray(action.payload) ? action.payload : state.originalTodos
-      }
-    }
-    case "show-all": {
-      return {
-        ...state,
-        filteredTodos: JSON.parse(JSON.stringify(state.originalTodos))
-      }
-    }
-    case "show-completed": {
-      return {
-        ...state,
-        filteredTodos: state.originalTodos.filter((todo) => todo.checked)
-      }
-    }
-    case "show-actives": {
-      return {
-        ...state,
-        filteredTodos: state.originalTodos.filter((todo) => !todo.checked)
-      }
+        filter: action.payload,
+        filteredTodos: applyFilter(state.originalTodos, action.payload),
+      };
     }
     default:
-      return "Unrecognized command";
+      return state;
   }
 }

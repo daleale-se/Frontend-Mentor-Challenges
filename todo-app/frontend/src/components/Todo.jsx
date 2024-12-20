@@ -9,12 +9,10 @@ const Todo = ({todo}) => {
 
   const handleRemoveTodo = () => {
     dispatch({type: "remove", payload: todo.id})
-    dispatch({type: "show-all"})
   }
 
   const handleChecked = () => {
     dispatch({type: "check", payload: todo.id})
-    dispatch({type: "show-all"})
   }
 
   return (
