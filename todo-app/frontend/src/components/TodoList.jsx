@@ -5,7 +5,7 @@ import Filter from "./Filter"
 import { List, arrayMove } from "react-movable";
 
 const getUserTodos = async (username) => {
-  const response = await fetch(`http://localhost:5000/todos/${username}`);
+  const response = await fetch(`http://localhost:3000/todos/${username}`);
   const data = await response.json();
   return data;
 };
