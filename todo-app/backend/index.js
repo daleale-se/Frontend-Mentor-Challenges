@@ -29,7 +29,7 @@ app.get("/todos", (req, res) => {
     })
 })
 
-// create todo in database
+// Create todo in database
 app.post("/todos/:username", (req, res) => {
     const {title} = req.body
     const {username} = req.params
@@ -45,7 +45,7 @@ app.post("/todos/:username", (req, res) => {
     });
 })
 
-// retrieve todos for specific user
+// Retrieve todos for specific user
 app.get("/todos/:username", (req, res) => {
     const {username} = req.params
     fs.readFile(filePath, 'utf8', (err, data) => {
@@ -66,28 +66,7 @@ app.get("/todos/:username", (req, res) => {
     })
 })
 
-// update checked todo
-// app.patch("/todos/:username", (req, res) => {
-//     const {username} = req.params
-//     const {id, checked} = req.body
-//     fs.readFile(filePath, 'utf8', (err, data) => {
-//         if (err) {
-//           console.error('Error reading the file:', err);
-//           return;
-//         }
-
-//         const rows = data.split('\n');
-//         const searchedTodo = rows.find(todo => todo.includes(id)).split(",")
-//         searchedTodo[2] = checked
-//         const updatedTodo = searchedTodo.join(",")
-        
-//         fs.writeFile(filePath, )
-        
-//         res.send(userTodos)
-//     })
-// })
-
-// check todo
+// Check todo
 app.patch("/todos/:username", (req, res) => {
     const { username } = req.params;
     const { id, checked } = req.body;
@@ -129,31 +108,6 @@ app.patch("/todos/:username", (req, res) => {
     });
 })
 
-// delete todo
-// app.delete("/todos/:username", (req, res) => {
-//     const { username } = req.params;
-//     const {id} = req.body
-
-//     fs.readFile(filePath, "utf8", (err, data) => {
-//         if (err) {
-//             console.error("Error reading the file:", err);
-//             return res.status(500).send("Internal Server Error");
-//         }
-
-//         const rows = data.split("\n");
-//         const updatedTodos = rows.filter(row => !row.includes(id))
-    
-//         fs.writeFile(filePath, updatedTodos.join("\n"), (err) => {
-//             if (err) {
-//                 console.error("Error writing to the file:", err);
-//                 return res.status(500).send("Internal Server Error");
-//             }
-    
-//             res.status(200).send("Todo delete successfully");
-//         });
-//     })
-// })
-
 // Delete todo
 app.delete("/todos/:username", (req, res) => {
     const { username } = req.params;
@@ -193,7 +147,55 @@ app.delete("/todos/:username", (req, res) => {
     });
 });
 
+// Reorder
+app.put("/todos/reorder/:username", (req, res) => {
+    const { username } = req.params;
+    const { newOrder } = req.body; // Array of todo IDs in the new order
 
+    if (!Array.isArray(newOrder)) {
+        return res.status(400).send("Invalid format: 'newOrder' must be an array of IDs.");
+    }
+
+    fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading the file:", err);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        const rows = data.split("\n");
+        const userTodos = [];
+        const otherTodos = [];
+
+        rows.forEach(row => {
+            const todo = row.split(",");
+            if (todo[0] === username) {
+                userTodos.push(row); 
+            } else {
+                otherTodos.push(row); 
+            }
+        });
+
+        const updatedUserTodos = [];
+        newOrder.forEach(id => {
+            const todoRow = userTodos.find(row => row.split(",")[3] === id);
+            if (todoRow) {
+                updatedUserTodos.push(todoRow);
+            }
+        });
+
+        const updatedTodos = [...updatedUserTodos, ...otherTodos];
+
+        fs.writeFile(filePath, updatedTodos.join("\n"), (err) => {
+            if (err) {
+                console.error("Error writing to the file:", err);
+                return res.status(500).send("Internal Server Error");
+            }
+
+            console.log("Todos reordered successfully");
+            res.status(200).send("Todos reordered successfully");
+        });
+    });
+});
 
 app.listen(PORT, (error) =>{
     if(!error)
