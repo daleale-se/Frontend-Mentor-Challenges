@@ -1,14 +1,18 @@
 import { useContext, useRef } from "react";
 import { TodoContext } from "../TodoContext";
+import { sendTitle, getUserTodos } from "./httpRequest"
 
 const TodoInput = () => {
 
   const inputRef = useRef(null);
   const {dispatch} = useContext(TodoContext)
 
-  const handleNewTodo = (e) => {
+  const handleNewTodo = async (e) => {
     e.preventDefault()
-    dispatch({type:"create-todo", payload: inputRef.current.value})
+    const username = "manguete"
+    const userTodos = await getUserTodos(username)
+    await sendTitle(inputRef.current.value, username)
+    dispatch({type: "reorder", payload: userTodos})
     inputRef.current.value = "";
   }
 

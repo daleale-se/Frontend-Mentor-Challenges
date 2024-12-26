@@ -1,0 +1,4 @@
+- Create authorization & authentication
+- Connect frontend with backend
+- Use tailwind for style frontend
+- Read & refactor index

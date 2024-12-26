@@ -3,12 +3,7 @@ import Todo from "./Todo"
 import { TodoContext } from "../TodoContext"
 import Filter from "./Filter"
 import { List, arrayMove } from "react-movable";
-
-const getUserTodos = async (username) => {
-  const response = await fetch(`http://localhost:3000/todos/${username}`);
-  const data = await response.json();
-  return data;
-};
+import { getUserTodos } from "./httpRequest"
 
 const TodoList = () => {
 
@@ -18,9 +13,9 @@ const TodoList = () => {
 
   useEffect(() => {
     async function fetchData() {
-        const username = "manguete"
-        const userTodos = await getUserTodos(username)
-        dispatch({type: "reorder", payload: userTodos})
+      const username = "manguete"
+      const userTodos = await getUserTodos(username)
+      dispatch({type: "reorder", payload: userTodos})
     }
     fetchData()
   }, [dispatch])
