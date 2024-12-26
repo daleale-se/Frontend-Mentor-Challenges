@@ -1,18 +1,24 @@
 /* eslint-disable react/prop-types */
-
 import { useContext } from "react"
 import { TodoContext } from "../TodoContext"
+import { deleteTodo, getUserTodos, updateTodo } from "./httpRequest"
 
 const Todo = ({todo}) => {
 
   const {dispatch} = useContext(TodoContext)
 
-  const handleRemoveTodo = () => {
-    dispatch({type: "remove", payload: todo.id})
+  const handleRemoveTodo = async () => {
+    const username = "manguete"
+    await deleteTodo(todo.id, username)
+    const userTodos = await getUserTodos(username)
+    dispatch({type: "reorder", payload: userTodos})
   }
 
-  const handleChecked = () => {
-    dispatch({type: "check", payload: todo.id})
+  const handleChecked = async () => {
+    const username = "manguete"
+    await updateTodo(todo.id, todo.checked, username)
+    const userTodos = await getUserTodos(username)
+    dispatch({type: "reorder", payload: userTodos})
   }
 
   return (

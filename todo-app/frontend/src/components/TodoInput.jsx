@@ -10,8 +10,8 @@ const TodoInput = () => {
   const handleNewTodo = async (e) => {
     e.preventDefault()
     const username = "manguete"
-    const userTodos = await getUserTodos(username)
     await sendTitle(inputRef.current.value, username)
+    const userTodos = await getUserTodos(username)
     dispatch({type: "reorder", payload: userTodos})
     inputRef.current.value = "";
   }

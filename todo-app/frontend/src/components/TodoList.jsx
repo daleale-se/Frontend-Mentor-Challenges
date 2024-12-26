@@ -3,7 +3,7 @@ import Todo from "./Todo"
 import { TodoContext } from "../TodoContext"
 import Filter from "./Filter"
 import { List, arrayMove } from "react-movable";
-import { getUserTodos } from "./httpRequest"
+import { getUserTodos, reorderTodos } from "./httpRequest"
 
 const TodoList = () => {
 
@@ -24,8 +24,11 @@ const TodoList = () => {
     dispatch({type: "clear-completed"})
   }
 
-  const handleReorder = ({ oldIndex, newIndex }) => {
+  const handleReorder = async ({ oldIndex, newIndex }) => {
     const updatedTodos = arrayMove(todos, oldIndex, newIndex);
+    const todoIds = updatedTodos.map(todo => todo.id)
+    const username = "manguete"
+    await reorderTodos(todoIds, username)
     dispatch({type: "reorder", payload: updatedTodos});
   };
 
