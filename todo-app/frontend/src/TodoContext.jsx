@@ -13,7 +13,6 @@ export const TodoContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const TodoProvider = ({children}) => {
-
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return <TodoContext.Provider value={{dispatch, state}}>

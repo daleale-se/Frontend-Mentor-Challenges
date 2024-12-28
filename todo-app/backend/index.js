@@ -197,6 +197,102 @@ app.put("/todos/reorder/:username", (req, res) => {
     });
 });
 
+// ----------------------------------------------------------------
+
+const bcrypt = require('bcrypt');
+const fs = require('fs');
+const jwt = require('jsonwebtoken'); // For generating tokens
+
+const SECRET_KEY = "your_secret_key"; // Replace with an environment variable in production
+your_secret_key
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading the file:", err);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        const rows = data.split('\n');
+        const userRow = rows.find(row => row.startsWith(`${username},`));
+
+        if (!userRow) {
+            return res.status(401).send("Invalid username or password");
+        }
+
+        const [storedUsername, storedPassword, role] = userRow.split(',');
+
+        bcrypt.compare(password, storedPassword, (err, isMatch) => {
+            if (err) {
+                console.error("Error comparing passwords:", err);
+                return res.status(500).send("Internal Server Error");
+            }
+
+            if (!isMatch) {
+                return res.status(401).send("Invalid username or password");
+            }
+
+            // Generate a token
+            const token = jwt.sign({ username, role }, SECRET_KEY, { expiresIn: '1h' });
+
+            res.json({ message: "Login successful", token });
+        });
+    });
+});
+
+app.post('/register', (req, res) => {
+    const { username, password, role = 'user' } = req.body;
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading the file:", err);
+            return res.status(500).send("Internal Server Error");
+        }
+
+        // Check if username already exists
+        const rows = data.split('\n');
+        if (rows.some(row => row.startsWith(`${username},`))) {
+            return res.status(409).send("Username already exists");
+        }
+
+        // Hash the password
+        bcrypt.hash(password, 10, (err, hashedPassword) => {
+            if (err) {
+                console.error("Error hashing password:", err);
+                return res.status(500).send("Internal Server Error");
+            }
+
+            const newUser = `${username},${hashedPassword},${role}\n`;
+
+            // Append the new user to the file
+            fs.appendFile(filePath, newUser, (err) => {
+                if (err) {
+                    console.error("Error writing to the file:", err);
+                    return res.status(500).send("Internal Server Error");
+                }
+
+                res.status(201).send("User registered successfully");
+            });
+        });
+    });
+});
+
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) return res.status(401).send("Access Denied");
+
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).send("Invalid Token");
+
+        req.user = user;
+        next();
+    });
+};
+
+
 app.listen(PORT, (error) =>{
     if(!error)
         console.log("Server is Successfully Running, and App is listening on port "+ PORT)
