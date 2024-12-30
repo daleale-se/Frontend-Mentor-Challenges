@@ -8,7 +8,6 @@ const getTodos = function(req, res) {
           console.error('Error reading the file:', err);
           return;
         }
-
         const rows = data.split('\n');
         const todos = rows.map(todo => todo.split(","))
         const userTodos = todos.filter(todo => todo[0] === username).map(todo => ({
