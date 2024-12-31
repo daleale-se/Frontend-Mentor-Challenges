@@ -1,23 +1,35 @@
 const fs = require('fs');
 const filePath = "./data/todos.csv"
 
+const csvParser = (data) => {
+    const rows = data.split('\n');
+    return rows.map(todo => {
+        const [user, title, checked, id] = todo.split(",")
+        return {
+            user,
+            title,
+            checked: checked === "true",
+            id
+        }
+    })
+}
+
 const getTodos = function(req, res) {
-    const {username} = req.params
+    const { username } = req.params
+
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
           console.error('Error reading the file:', err);
           return;
         }
-        const rows = data.split('\n');
-        const todos = rows.map(todo => todo.split(","))
-        const userTodos = todos.filter(todo => todo[0] === username).map(todo => ({
-            title: todo[1],
-            checked: (todo[2] === "true"),
-            id: todo[3]
-        }))
 
-        res.send(userTodos)
+        const todos = csvParser(data).filter(todo => todo.user === username)
+
+        res.json(todos)
     })
+
+    // const todos = readCsv(filePath).filter(todo => todo[0] === username)
+    // res.json(todos)
 }
 
 const createTodo = function(req, res) {
@@ -116,7 +128,7 @@ const deleteTodo = function(req, res) {
 
 const reorderTodos = function(req, res) {
     const { username } = req.params;
-    const { newOrder } = req.body; // Array of todo IDs in the new order
+    const { newOrder } = req.body; 
 
     if (!Array.isArray(newOrder)) {
         return res.status(400).send("Invalid format: 'newOrder' must be an array of IDs.");
